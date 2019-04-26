@@ -1,10 +1,18 @@
 chrony:
   ntpservers:
-    - 'ntp0.nl.net'
-    - 'ntp1.nl.net'
-    - 'ntp2.nl.net'
-    - 'ntp.xs4all.nl'
-    - '0.nl.pool.ntp.org'
-    - '1.nl.pool.ntp.org'
-    - '2.nl.pool.ntp.org'
-    - '3.nl.pool.ntp.org'
+    - '0.debian.pool.ntp.org'
+    - '1.centos.pool.ntp.org'
+    - '2.arch.pool.ntp.org'
+    - '3.gentoo.pool.ntp.org'
+  keyfile: /etc/chrony.keys
+  allow: ['10/8', '192.168/16', '172.16/12' ]
+  otherparams: [ 'rtcsync',
+                 'makestep 10 3',
+                 'stratumweight 0',
+                 'bindcmdaddress 127.0.0.1',
+                 'bindcmdaddress ::1',
+                 'commandkey 1',
+                 'generatecommandkey',
+                 'noclientlog',
+                 'logchange 0.5',
+               ]

@@ -1,5 +1,17 @@
-# OS parameters overriding common defaults(.yaml)
 
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Setup variables using grains['os'] based logic.
+# You just need to add the key:values for an `os` that differ
+# from `defaults.yaml` + `os_family.yaml`.
+# Only add an `os` which is/will be supported by the formula
+#
+# If you do not need to provide defaults via the `os` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# osmap: {}
+---
+# os_family: Debian
 Debian:
   service: chrony
   config: /etc/chrony/chrony.conf
@@ -18,6 +30,7 @@ Debian:
                  'local stratum 10',
                  'rtconutc', ]
 
+# os_family: RedHat
 RedHat:
   ntpservers: [ '0.centos.pool.ntp.org',
                 '1.centos.pool.ntp.org',
@@ -33,13 +46,7 @@ RedHat:
                  'noclientlog',
                  'logchange 0.5', ]
 
-Arch:
-  ntpservers: [ '0.arch.pool.ntp.org',
-                 '1.arch.pool.ntp.org',
-                 '2.arch.pool.ntp.org' ]
-  otherparams: [ 'rtconutc',
-                 'rtcsync', ]
-
+# os_family: Gentoo
 Gentoo:
   package: net-misc/chrony
   service: chronyd
@@ -53,6 +60,7 @@ Gentoo:
   otherparams: [ 'rtconutc',
                  'rtcsync', ]
 
+# os_family: Suse
 Suse:
   ntpservers: [ '0.arch.opensuse.ntp.org',
                 '1.arch.opensuse.ntp.org',
@@ -63,3 +71,10 @@ Suse:
                  'maxdistance 6',
                  'logchange 0.1', ]
 
+# os_family: Arch
+Arch:
+  ntpservers: [ '0.arch.pool.ntp.org',
+                 '1.arch.pool.ntp.org',
+                 '2.arch.pool.ntp.org' ]
+  otherparams: [ 'rtconutc',
+                 'rtcsync', ]
