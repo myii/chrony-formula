@@ -4,11 +4,15 @@
 keyfile = 'keyfile '
 driftfile = '/var/lib/chrony/'
 logdir = 'logdir /var/log/chrony'
-case os[:name]
+case platform[:name]
 when 'debian', 'ubuntu'
   config_file = '/etc/chrony/chrony.conf'
   keyfile += '/etc/chrony/chrony.keys'
   driftfile += 'chrony.drift'
+when 'gentoo'
+  config_file = '/etc/chrony/chrony.conf'
+  keyfile += '/etc/chrony.keys'
+  driftfile += 'drift'
 else
   config_file = '/etc/chrony.conf'
   keyfile += '/etc/chrony.keys'
